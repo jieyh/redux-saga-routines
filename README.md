@@ -12,7 +12,7 @@ Reduce boilerplate from your source code when making requests to API or validati
 ## Installation
 
 ```javascript
-yarn add redux-saga-routines
+yarn add https://github.com/jieyh/redux-saga-routines.git
 ```
 
 ## What is routine?
