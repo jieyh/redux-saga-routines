@@ -1,5 +1,6 @@
 import { ActionFunction0, ActionFunction1, ActionFunction2, ActionFunction3, ActionFunction4, Action, ActionFunctionAny, ActionMeta } from 'redux-actions';
-import { FormSubmitHandler } from 'redux-form';
+import { FormSubmitHandler} from 'redux-form';
+import { Dispatch } from "redux";
 
 export interface RoutineTypes {
     TRIGGER: string;
@@ -12,6 +13,9 @@ export interface RoutineTypes {
 export type RoutineAction<T> = Action<T>;
 
 export type RoutineActionCreator<T> = (payload?: T) => RoutineAction<T>;
+
+export type promisifyRoutineHandler<Payload> =
+  (payload:Payload , dispatch: Dispatch<any>) => Promise<any>;
 
 export interface RoutineActionCreators {
     trigger: RoutineActionCreator<any>;
@@ -89,5 +93,9 @@ export function createRoutine<Payload, Meta, Arg1, Arg2, Arg3, Arg4>(
 ): Routine<ActionFunction4<Arg1, Arg2, Arg3, Arg4, ActionMeta<Payload, Meta>>>;
 
 export function bindRoutineToReduxForm<T>(routine: Routine<T>): FormSubmitHandler;
+
+export function bindPromiseCreators(promiseCreators, dispatch: Dispatch<any>);
+
+export function promisifyRoutine<T>(routine: Routine<T>): promisifyRoutineHandler;
 
 export const ROUTINE_PROMISE_ACTION: string;
